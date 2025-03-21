@@ -82,11 +82,3 @@ curl -X POST "http://localhost:8000/detect-landmarks" \
      -H "Content-Type: application/json" \
      -d '{"image_url": "https://media.istockphoto.com/id/157671964/photo/portrait-of-a-tabby-cat-looking-at-the-camera.jpg?s=612x612&w=0&k=20&c=iTsJO6vuQ5w3hL5pWn42C91ziMRUsYd725oUGRRewjM="}'
 ```
-
-## Local Development
-
-### Running Tests
-
-```bash
-pytest tests.py -v
-``` 
