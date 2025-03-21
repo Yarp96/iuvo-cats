@@ -1,0 +1,8 @@
+.vscode
+__pycache__
+cats
+.pytest_cache
+venv
+venv2
+training/__pycache__
+

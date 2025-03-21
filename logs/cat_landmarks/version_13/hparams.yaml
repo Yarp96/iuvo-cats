@@ -1,0 +1,5 @@
+encoder_name: timm-efficientnet-b0
+encoder_weights: imagenet
+learning_rate: 0.0003
+max_epochs: 20
+weight_decay: 0.0001
