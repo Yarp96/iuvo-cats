@@ -4,7 +4,7 @@ from pydantic import BaseModel, HttpUrl
 from typing import List, Tuple, Optional, Dict
 import os
 import uvicorn
-from predict import predict_cat_landmarks
+from predict import predict_cat_landmarks, load_onnx_model   
 
 # Define the app
 app = FastAPI(
@@ -36,6 +36,7 @@ LANDMARK_NAMES = [
 
 # Define the model path
 MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "model.onnx")
+session = load_onnx_model(MODEL_PATH)
 
 @app.get("/")
 async def root():
@@ -46,7 +47,7 @@ async def detect_landmarks(request: ImageRequest):
     try:
         # Call the prediction function from predict.py
         landmarks_list = predict_cat_landmarks(
-            model_path=MODEL_PATH,
+            onxx_session=session,
             image_url=str(request.image_url)
         )
         

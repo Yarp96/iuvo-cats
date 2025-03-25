@@ -199,7 +199,7 @@ def visualize_landmarks_matplotlib(image, landmarks, save_path=None, figsize=(10
     
     return fig
 
-def predict_cat_landmarks(model_path, image_url, model_dimensions=(256, 256)):
+def predict_cat_landmarks(onxx_session, image_url, model_dimensions=(256, 256)):
     """
     End-to-end function to predict cat facial landmarks from an image.
     
@@ -210,8 +210,6 @@ def predict_cat_landmarks(model_path, image_url, model_dimensions=(256, 256)):
     Returns:
         list (tuple): landmarks where landmarks is a list of (x, y) tuples
     """
-    # Load model
-    session = load_onnx_model(model_path)
     
     # Load and preprocess image
     original_image =  Image.open(requests.get(image_url, stream=True).raw).convert('RGB')
@@ -219,7 +217,7 @@ def predict_cat_landmarks(model_path, image_url, model_dimensions=(256, 256)):
     image_tensor = preprocess_image(original_image)
     
     # Perform forward pass
-    heatmaps = forward_pass(session, image_tensor)
+    heatmaps = forward_pass(onxx_session, image_tensor)
     
     # Get landmark predictions
     landmarks = get_landmark_predictions(heatmaps)
